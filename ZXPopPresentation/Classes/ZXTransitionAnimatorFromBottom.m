@@ -35,8 +35,8 @@
     UIViewController *animatedController = isPresentation ? toVC : fromVC;
     UIView *animatedView = isPresentation ? toView : fromView;
     animatedView.frame = [transitionContext finalFrameForViewController:animatedController];
-    CGFloat SCREEN_HEIGHT = [UIScreen mainScreen].bounds.size.width;
-    CGFloat offset = SCREEN_HEIGHT - CGRectGetMinY(animatedView.frame);
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.height;
+    CGFloat offset = screenWidth - CGRectGetMinY(animatedView.frame);
     CGAffineTransform transform = CGAffineTransformMakeTranslation(0, offset);
     if (isPresentation) {
         [containerView addSubview:animatedView];
