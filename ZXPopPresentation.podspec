@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ZXPopPresentation"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "A simple way to present a view controller like a pop panel"
 
 # This description is used to generate tags and improve search results.
