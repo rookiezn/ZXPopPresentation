@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZXTransitionAnimatorFromBottom : NSObject
+@interface ZXTransitionAnimatorFromBottom : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, assign) CGFloat duration;
 @property (nonatomic, assign) CGFloat dampingRatio;

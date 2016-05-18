@@ -30,11 +30,12 @@
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     UIView *containerView = [transitionContext containerView];
     
-    BOOL isPresentation = toView;
+    BOOL isPresentation = !(toView == nil);
     
     UIViewController *animatedController = isPresentation ? toVC : fromVC;
     UIView *animatedView = isPresentation ? toView : fromView;
     animatedView.frame = [transitionContext finalFrameForViewController:animatedController];
+    CGFloat SCREEN_HEIGHT = [UIScreen mainScreen].bounds.size.width;
     CGFloat offset = SCREEN_HEIGHT - CGRectGetMinY(animatedView.frame);
     CGAffineTransform transform = CGAffineTransformMakeTranslation(0, offset);
     if (isPresentation) {
