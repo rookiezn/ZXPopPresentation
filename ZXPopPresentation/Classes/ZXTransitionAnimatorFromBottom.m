@@ -43,14 +43,20 @@
         animatedView.transform = transform;
     }
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:_dampingRatio initialSpringVelocity:_velocity options:0 animations:^{
-        animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
-    } completion:^(BOOL finished) {
-        if (!isPresentation) {
-            [animatedView removeFromSuperview];
-        }
-        [transitionContext completeTransition:finished];
-    }];
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                          delay:0
+         usingSpringWithDamping:isPresentation ? _dampingRatio : 1
+          initialSpringVelocity:_velocity
+                        options:0
+                     animations:^{
+                         animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
+                     }
+                     completion:^(BOOL finished) {
+                         if (!isPresentation) {
+                             [animatedView removeFromSuperview];
+                         }
+                         [transitionContext completeTransition:finished];
+                     }];
 };
 
 @end
