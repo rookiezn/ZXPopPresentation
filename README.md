@@ -9,6 +9,8 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+![](https://github.com/RookieZn/ZXPopPresentation/blob/master/Example/ZXPopPresentation/demo.gif)
+
 ## Requirements
 
 ## Installation
