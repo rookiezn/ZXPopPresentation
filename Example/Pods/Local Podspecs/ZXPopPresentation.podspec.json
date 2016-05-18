@@ -1,6 +1,6 @@
 {
   "name": "ZXPopPresentation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "A simple way to present a view controller like a pop panel",
   "description": "A simple way to present a view controller like a pop panel. It is easy to deal with custom animations, dimming background, frame as well as some actions;",
   "homepage": "https://github.com/RookieZn/ZXPopPresentation",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/RookieZn/ZXPopPresentation.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"

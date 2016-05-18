@@ -13,8 +13,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         _duration = 0.5;
-        _dampingRatio = 0.6;
-        _velocity = 0.4;
+        _dampingRatio = 0.7;
+        _velocity = 0.7;
     }
     return self;
 }

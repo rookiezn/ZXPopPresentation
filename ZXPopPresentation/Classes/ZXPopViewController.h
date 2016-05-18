@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, ZXTransitionAnimationStyle) {
     ZXTransitionAnimationStyleFromBottom
 };
 
-@interface ZXPopViewController : UIViewController <ZXPopPresentationDelegate>
+@interface ZXPopViewController : UIViewController <ZXPopPresentationDelegate, UIViewControllerTransitioningDelegate>
 
 /*! @brief animation style */
 @property (nonatomic, assign) ZXTransitionAnimationStyle style;

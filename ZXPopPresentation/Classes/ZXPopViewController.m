@@ -11,7 +11,7 @@
 #import "ZXTransitionAnimatorFade.h"
 #import "ZXTransitionAnimatorFromBottom.h"
 
-@interface ZXPopViewController () <UIViewControllerTransitioningDelegate>
+@interface ZXPopViewController ()
 
 @property (nonatomic, strong) ZXPopPresentationController *popPresentationController;
 
