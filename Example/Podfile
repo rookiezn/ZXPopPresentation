@@ -9,4 +9,5 @@ target 'ZXPopPresentation_Example' do
     pod 'Specta'
   pod 'Expecta'
   end
+  pod 'Masonry'
 end

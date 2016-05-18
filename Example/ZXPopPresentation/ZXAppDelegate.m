@@ -7,12 +7,15 @@
 //
 
 #import "ZXAppDelegate.h"
+#import "ZXViewController.h"
 
 @implementation ZXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.rootViewController = [[ZXViewController alloc] init];
+    [_window makeKeyAndVisible];
     return YES;
 }
 
