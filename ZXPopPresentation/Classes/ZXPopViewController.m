@@ -13,7 +13,7 @@
 
 @interface ZXPopViewController ()
 
-@property (nonatomic, strong) ZXPopPresentationController *popPresentationController;
+@property (nonatomic, weak) ZXPopPresentationController *popPresentationController;
 
 @end
 
@@ -53,11 +53,11 @@
                                                       presentingViewController:(UIViewController *)presenting
                                                           sourceViewController:(UIViewController *)source {
     if (!_popPresentationController) {
-        _popPresentationController = [[ZXPopPresentationController alloc] initWithPresentedViewController:presented
-                                                                                 presentingViewController:presenting];
-        _popPresentationController.popPresentationDelegate = self;
-        _popPresentationController.dimming = _dimming;
-        _popPresentationController.shouldDismissWhenTap = _shouldDismissWhenTap;
+        ZXPopPresentationController * popPresentationController = [[ZXPopPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+        popPresentationController.popPresentationDelegate = self;
+        popPresentationController.dimming = _dimming;
+        popPresentationController.shouldDismissWhenTap = _shouldDismissWhenTap;
+        return _popPresentationController = popPresentationController;
     }
     return _popPresentationController;
 }
