@@ -24,6 +24,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		659BADCB1FCC0EEF008DB429 /* ZXPopTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659BADCA1FCC0EEF008DB429 /* ZXPopTransitionDelegate.m */; };
 		965889640CF652B709440720 /* Pods_ZXPopPresentation_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96272BB7955328BC70907557 /* Pods_ZXPopPresentation_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,8 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		659BADC91FCC0EEF008DB429 /* ZXPopTransitionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXPopTransitionDelegate.h; sourceTree = "<group>"; };
+		659BADCA1FCC0EEF008DB429 /* ZXPopTransitionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXPopTransitionDelegate.m; sourceTree = "<group>"; };
 		96272BB7955328BC70907557 /* Pods_ZXPopPresentation_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZXPopPresentation_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D0B81147F67B1AD26EE761 /* ZXPopPresentation.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZXPopPresentation.podspec; path = ../ZXPopPresentation.podspec; sourceTree = "<group>"; };
 		D953DD136813C5C8900CEFC7 /* Pods_ZXPopPresentation_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZXPopPresentation_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +144,8 @@
 				6003F5A6195388D20070C39A /* ZXViewController.m */,
 				2DA8D44E1CEB1FD00096F05F /* ZXPresentedViewController.h */,
 				2DA8D44F1CEB1FD00096F05F /* ZXPresentedViewController.m */,
+				659BADC91FCC0EEF008DB429 /* ZXPopTransitionDelegate.h */,
+				659BADCA1FCC0EEF008DB429 /* ZXPopTransitionDelegate.m */,
 				2DA8D4381CEB16760096F05F /* Launch Screen.storyboard */,
 				2DA8D4591CEC10850096F05F /* demo.gif */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -208,12 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ZXPopPresentation_Example" */;
 			buildPhases = (
-				EC98C1F8DFBF99FC3E90CAD7 /* 📦 Check Pods Manifest.lock */,
+				EC98C1F8DFBF99FC3E90CAD7 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				EC2336EC23B40B37180D8C41 /* 📦 Embed Pods Frameworks */,
-				196A27D45D64C44CC3DC5915 /* 📦 Copy Pods Resources */,
+				EC2336EC23B40B37180D8C41 /* [CP] Embed Pods Frameworks */,
+				196A27D45D64C44CC3DC5915 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,12 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "ZXPopPresentation_Tests" */;
 			buildPhases = (
-				152029239C749DB0FC0581B0 /* 📦 Check Pods Manifest.lock */,
+				152029239C749DB0FC0581B0 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				E92F9655ECF79CE5E4F1CBBC /* 📦 Embed Pods Frameworks */,
-				62B46F85DD32D0884F95A73D /* 📦 Copy Pods Resources */,
+				E92F9655ECF79CE5E4F1CBBC /* [CP] Embed Pods Frameworks */,
+				62B46F85DD32D0884F95A73D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,6 +260,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = rookiezn;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 849TCVN2TJ;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -302,29 +310,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		152029239C749DB0FC0581B0 /* 📦 Check Pods Manifest.lock */ = {
+		152029239C749DB0FC0581B0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		196A27D45D64C44CC3DC5915 /* 📦 Copy Pods Resources */ = {
+		196A27D45D64C44CC3DC5915 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,14 +340,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZXPopPresentation_Example/Pods-ZXPopPresentation_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		62B46F85DD32D0884F95A73D /* 📦 Copy Pods Resources */ = {
+		62B46F85DD32D0884F95A73D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,14 +355,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZXPopPresentation_Tests/Pods-ZXPopPresentation_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E92F9655ECF79CE5E4F1CBBC /* 📦 Embed Pods Frameworks */ = {
+		E92F9655ECF79CE5E4F1CBBC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,14 +370,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZXPopPresentation_Tests/Pods-ZXPopPresentation_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC2336EC23B40B37180D8C41 /* 📦 Embed Pods Frameworks */ = {
+		EC2336EC23B40B37180D8C41 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,19 +385,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZXPopPresentation_Example/Pods-ZXPopPresentation_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC98C1F8DFBF99FC3E90CAD7 /* 📦 Check Pods Manifest.lock */ = {
+		EC98C1F8DFBF99FC3E90CAD7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -400,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* ZXAppDelegate.m in Sources */,
+				659BADCB1FCC0EEF008DB429 /* ZXPopTransitionDelegate.m in Sources */,
 				2DA8D4501CEB1FD00096F05F /* ZXPresentedViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* ZXViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
@@ -523,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 849TCVN2TJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZXPopPresentation/ZXPopPresentation-Prefix.pch";
 				INFOPLIST_FILE = "ZXPopPresentation/ZXPopPresentation-Info.plist";
@@ -540,6 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 849TCVN2TJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZXPopPresentation/ZXPopPresentation-Prefix.pch";
 				INFOPLIST_FILE = "ZXPopPresentation/ZXPopPresentation-Info.plist";

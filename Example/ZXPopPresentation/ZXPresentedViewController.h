@@ -6,8 +6,8 @@
 //  Copyright © 2016 rookiezn. All rights reserved.
 //
 
-#import <ZXPopPresentation/ZXPopViewController.h>
+#import <UIKit/UIKit.h>
 
-@interface ZXPresentedViewController : ZXPopViewController
+@interface ZXPresentedViewController : UIViewController
 
 @end

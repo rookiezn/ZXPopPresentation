@@ -10,47 +10,33 @@
 
 @implementation ZXTransitionAnimatorFade
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _duration = 0.25;
-        _offsetX = 0;
-        _offsetY = 30;
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        self.offsetX = 0;
+        self.offsetY = 50;
     }
     return self;
 }
 
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return _duration;
-}
-
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-    UIView *containerView = [transitionContext containerView];
-    
-    BOOL isPresentation = !(toView == nil);
-    
-    UIViewController *animatedController = isPresentation ? toVC : fromVC;
+- (void)configureInitialStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
+{
     UIView *animatedView = isPresentation ? toView : fromView;
-    animatedView.frame = [transitionContext finalFrameForViewController:animatedController];
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(_offsetX, _offsetY);
-    if (isPresentation) {
-        [containerView addSubview:animatedView];
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);
+    if (isPresentation)
+    {
         animatedView.alpha = 0;
         animatedView.transform = transform;
     }
-    
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
-        animatedView.alpha = isPresentation ? 1 : 0;
-    } completion:^(BOOL finished) {
-        if (!isPresentation) {
-            [animatedView removeFromSuperview];
-        }
-        [transitionContext completeTransition:finished];
-    }];
-};
+}
+
+- (void)configureFinalStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
+{
+    UIView *animatedView = isPresentation ? toView : fromView;
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);
+    animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
+    animatedView.alpha = isPresentation ? 1 : 0;
+}
 
 @end

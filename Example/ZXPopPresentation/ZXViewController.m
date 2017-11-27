@@ -8,20 +8,24 @@
 
 #import "ZXViewController.h"
 #import "ZXPresentedViewController.h"
+#import "ZXPopPresentation.h"
+#import "ZXPopTransitionDelegate.h"
 
 @interface ZXViewController ()
 
 @property (nonatomic, strong) UIButton *presentBtn1;
 @property (nonatomic, strong) UIButton *presentBtn2;
 @property (nonatomic, strong) UIButton *presentBtn3;
-@property (nonatomic, strong) UIButton *presentBtn4;
-@property (nonatomic, strong) UIButton *presentBtn5;
+
+@property (nonatomic, strong) __kindof ZXTransitionAnimator *animator;
+@property (nonatomic, strong) ZXPopTransitionDelegate *popTransitionDelegate;
 
 @end
 
 @implementation ZXViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -34,66 +38,53 @@
         make.height.mas_equalTo(300);
     }];
     
-    _presentBtn1 = [self btnWithTitle:@"default"];
-    [_presentBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.presentBtn1 = [self btnWithTitle:@"default"]];
+    [self.presentBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(imageView.mas_bottom).offset(10);
         make.centerX.mas_equalTo(0);
     }];
     
-    _presentBtn2 = [self btnWithTitle:@"fade"];
-    [_presentBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_presentBtn1.mas_bottom).offset(20);
+    [self.view addSubview:self.presentBtn2 = [self btnWithTitle:@"fade"]];
+    [self.presentBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.presentBtn1.mas_bottom).offset(20);
         make.centerX.mas_equalTo(0);
     }];
     
-    _presentBtn3 = [self btnWithTitle:@"from bottom"];
-    [_presentBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_presentBtn2.mas_bottom).offset(20);
-        make.centerX.mas_equalTo(0);
-    }];
-    
-    _presentBtn4 = [self btnWithTitle:@"no dim"];
-    [_presentBtn4 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_presentBtn3.mas_bottom).offset(20);
-        make.centerX.mas_equalTo(0);
-    }];
-    
-    _presentBtn5 = [self btnWithTitle:@"no tap dismiss"];
-    [_presentBtn5 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_presentBtn4.mas_bottom).offset(20);
+    [self.view addSubview:self.presentBtn3 = [self btnWithTitle:@"from bottom"]];
+    [self.presentBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.presentBtn2.mas_bottom).offset(20);
         make.centerX.mas_equalTo(0);
     }];
 }
 
-- (void)present:(UIButton *)sender {
-    ZXTransitionAnimationStyle style;
-    BOOL dimming = YES;
-    BOOL shouldDismissWhenTap = YES;
-    if (sender == _presentBtn1) {
-        style = ZXTransitionAnimationStyleDefault;
-    } else if (sender == _presentBtn2) {
-        style = ZXTransitionAnimationStyleFade;
-    } else if (sender == _presentBtn3) {
-        style = ZXTransitionAnimationStyleFromBottom;
-    } else if (sender == _presentBtn4) {
-        style = ZXTransitionAnimationStyleDefault;
-        dimming = NO;
-    } else if (sender == _presentBtn5) {
-        style = ZXTransitionAnimationStyleDefault;
-        shouldDismissWhenTap = NO;
+- (void)present:(UIButton *)sender
+{
+    ZXPopPresentationStyle style = 0;
+    if (sender == self.presentBtn1)
+    {
+        style = ZXPopPresentationStyleDefault;
     }
-    ZXPresentedViewController *controller = [[ZXPresentedViewController alloc] initWithAnimationStyle:style];
-    controller.dimming = dimming;
-    controller.shouldDismissWhenTap = shouldDismissWhenTap;
+    else if (sender == self.presentBtn2)
+    {
+        style = ZXPopPresentationStyleFade;
+    }
+    else if (sender == self.presentBtn3)
+    {
+        style = ZXPopPresentationStyleFromBottom;
+    }
+    ZXPresentedViewController *controller = [[ZXPresentedViewController alloc] init];
+    self.popTransitionDelegate = [[ZXPopTransitionDelegate alloc] initWithStyle:style];
+    controller.transitioningDelegate = self.popTransitionDelegate;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (UIButton *)btnWithTitle:(NSString *)title {
+- (UIButton *)btnWithTitle:(NSString *)title
+{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn addTarget:self action:@selector(present:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.view addSubview:btn];
     return btn;
 }
 

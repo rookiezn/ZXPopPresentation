@@ -10,82 +10,113 @@
 
 @interface ZXPopPresentationController ()
 
-@property (nonatomic, strong) UIView *dimmingView;
+@property (nonatomic, strong) UIView *backgroundView;
 
 @end
 
 @implementation ZXPopPresentationController
 
-- (CGRect)frameOfPresentedViewInContainerView {
-    if (self.popPresentationDelegate && [self.popPresentationDelegate respondsToSelector:@selector(frameOfPresentedViewForPresentationController:)]) {
-        return [self.popPresentationDelegate frameOfPresentedViewForPresentationController:self];
+- (CGRect)frameOfPresentedViewInContainerView
+{
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_frameOfPresentedViewInContainerView:)])
+    {
+        return [self.popPresentationDelegate zx_frameOfPresentedViewInContainerView:self];
     }
     return CGRectInset(self.containerView.bounds, 20, 80);
 }
 
-- (void)presentationTransitionWillBegin {
-    if (_dimming || _shouldDismissWhenTap) {
-        _dimmingView = [UIView new];
-        _dimmingView.frame = self.containerView.bounds;
-        [self.containerView insertSubview:_dimmingView atIndex:0];
+- (void)presentationTransitionWillBegin
+{
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_presentationTransitionWillBegin:)])
+    {
+        [self.popPresentationDelegate zx_presentationTransitionWillBegin:self];
     }
     
-    if (_shouldDismissWhenTap) {
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-        [_dimmingView addGestureRecognizer:tapGesture];
-    }
+    [self.containerView insertSubview:self.backgroundView atIndex:0];
     
-    if (_dimming) {
-        _dimmingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
-        _dimmingView.alpha = 0;
-        id<UIViewControllerTransitionCoordinator> coordinator = self.presentedViewController.transitionCoordinator;
-        if (coordinator) {
-            [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                _dimmingView.alpha = 1;
-            } completion:nil];
-        } else {
-            _dimmingView.alpha = 1;
-        }
+    self.backgroundView.alpha = 0;
+    id<UIViewControllerTransitionCoordinator> coordinator = self.presentedViewController.transitionCoordinator;
+    if (coordinator)
+    {
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            self.backgroundView.alpha = 1;
+        } completion:nil];
+    }
+    else
+    {
+        self.backgroundView.alpha = 1;
     }
 }
 
 - (void)presentationTransitionDidEnd:(BOOL)completed {
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_presentationTransitionDidEnd:)])
+    {
+        [self.popPresentationDelegate zx_presentationTransitionDidEnd:self];
+    }
+    
     if (!completed) {
-        [_dimmingView removeFromSuperview];
+        [self.backgroundView removeFromSuperview];
     }
 }
 
 - (void)dismissalTransitionWillBegin {
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_dismissalTransitionWillBegin:)])
+    {
+        [self.popPresentationDelegate zx_dismissalTransitionWillBegin:self];
+    }
+    
     id<UIViewControllerTransitionCoordinator> coordinator = self.presentedViewController.transitionCoordinator;
-    if (coordinator) {
+    if (coordinator)
+    {
         [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-            _dimmingView.alpha = 0;
+            self.backgroundView.alpha = 0;
         } completion:nil];
-    } else {
-        _dimmingView.alpha = 0;
+    }
+    else
+    {
+        self.backgroundView.alpha = 0;
     }
 }
 
 - (void)dismissalTransitionDidEnd:(BOOL)completed {
-    if (completed) {
-        [_dimmingView removeFromSuperview];
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_dismissalTransitionDidEnd:)])
+    {
+        [self.popPresentationDelegate zx_dismissalTransitionDidEnd:self];
+    }
+    
+    if (completed)
+    {
+        [self.backgroundView removeFromSuperview];
     }
 }
 
-#pragma mark - Utils
+#pragma mark - Property
 
-/**
- *  dismiss when tapping dimming background.
- */
-- (void)dismiss {
-    if (self.popPresentationDelegate && [self.popPresentationDelegate respondsToSelector:@selector(presentationWillDismiss:)]) {
-        [self.popPresentationDelegate presentationWillDismiss:self];
+- (UIView *)backgroundView
+{
+    if (!_backgroundView)
+    {
+        _backgroundView = [[UIView alloc] initWithFrame:self.containerView.bounds];
+        _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBackgroundView:)];
+        [_backgroundView addGestureRecognizer:tapGesture];
     }
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
-        if (self.popPresentationDelegate && [self.popPresentationDelegate respondsToSelector:@selector(presentationDidDismissed:)]) {
-            [self.popPresentationDelegate presentationDidDismissed:self];
-        }
-    }];
+    return _backgroundView;
+}
+
+#pragma mark - Action
+
+- (void)handleTapBackgroundView:(UITapGestureRecognizer *)tapGesture
+{
+    if ([self.popPresentationDelegate respondsToSelector:@selector(zx_presentationController:didTapOutsideAtPoint:)])
+    {
+        [self.popPresentationDelegate zx_presentationController:self didTapOutsideAtPoint:[tapGesture locationInView:self.containerView]];
+    }
+    else
+    {
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 

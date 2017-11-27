@@ -7,6 +7,7 @@
 //
 
 #import "ZXPresentedViewController.h"
+#import "Masonry.h"
 
 @interface ZXPresentedViewController ()
 
@@ -14,7 +15,8 @@
 
 @implementation ZXPresentedViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.layer.cornerRadius = 10;
     self.view.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -38,22 +40,9 @@
     }];
 }
 
-- (void)dismiss {
+- (void)dismiss
+{
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)presentationWillDismiss:(ZXPopPresentationController *)presentationController {
-    NSLog(@"will dismiss");
-}
-
-- (void)presentationDidDismissed:(ZXPopPresentationController *)presentationController {
-    NSLog(@"did dismiss");
-}
-
-- (CGRect)frameOfPresentedViewForPresentationController:(ZXPopPresentationController *)controller {
-    CGFloat width = controller.containerView.bounds.size.width - 60;
-    CGFloat height = controller.containerView.bounds.size.height - 200;
-    return CGRectMake(30, 150, width, height);
 }
 
 @end

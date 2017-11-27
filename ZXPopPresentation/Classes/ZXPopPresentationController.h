@@ -13,28 +13,59 @@
 @protocol ZXPopPresentationDelegate <NSObject>
 
 @optional
-/**
- *  Notifies the delegate that the dismissal transition due to tapping dimming are about to start.
- *
- *  @param controller the presentation controller
- */
-- (void)presentationWillDismiss:(ZXPopPresentationController *)presentationController;
 
 /**
- *  Notifies the delegate that the dismissal transition due to tapping dimming finished.
- *
- *  @param controller the presentation controller
+ Tells the delegate that the presentation animations are about to start
+
+ @param presentationController the presentation controller
  */
-- (void)presentationDidDismissed:(ZXPopPresentationController *)presentationController;
+- (void)zx_presentationTransitionWillBegin:(ZXPopPresentationController *)presentationController;
 
 /**
- *  ask the delegate for the frame of the presented view
- *
- *  @param controller the presentation controller
- *
- *  @return frame
+ Tells the delegate that the presentation animations finished
+
+ @param presentationController the presentation controller
  */
-- (CGRect)frameOfPresentedViewForPresentationController:(ZXPopPresentationController *)controller;
+- (void)zx_presentationTransitionDidEnd:(ZXPopPresentationController *)presentationController;
+
+/**
+ Tells the delegate that the dismissal animations are about to start
+
+ @param presentationController the presentation controller
+ */
+- (void)zx_dismissalTransitionWillBegin:(ZXPopPresentationController *)presentationController;
+
+/**
+ Tells the delegate that the dismissal animations finished
+
+ @param presentationController the presentation controller
+ */
+- (void)zx_dismissalTransitionDidEnd:(ZXPopPresentationController *)presentationController;
+
+/**
+ Tells the delegate that the presented view has been added to the container view
+
+ @param presentationController the presentation controller
+ @param containerView the container view during the presentation
+ */
+- (void)zx_presentationController:(ZXPopPresentationController *)presentationController presentedViewDidAddToContainerView:(UIView *)containerView;
+
+/**
+ Ask the delegate for the frame of the presented view in container view
+
+ @param presentationController the presentation controller
+ @return frame of the prsented view in container view
+ @discussion If you use auto layout for the presented view, do NOT implement this method, but implement `zx_presentationController:(ZXPopPresentationController *)presentationController presentedViewDidAddToContainerView:(UIView *)containerView` and install constraints needed
+ */
+- (CGRect)zx_frameOfPresentedViewInContainerView:(ZXPopPresentationController *)presentationController;
+
+/**
+ Called when the user taps outside the presented view
+
+ @param presentationController the presentation controller
+ @param point the touch point in the container view coordinate
+ */
+- (void)zx_presentationController:(ZXPopPresentationController *)presentationController didTapOutsideAtPoint:(CGPoint)point;
 
 @end
 
@@ -42,10 +73,9 @@
 
 @property (nonatomic, weak) id<ZXPopPresentationDelegate> popPresentationDelegate;
 
-/*! @brief dimming background or not */
-@property (nonatomic, assign) BOOL dimming;
-
-/*! @brief if dismiss when tapping dimming background */
-@property (nonatomic, assign) BOOL shouldDismissWhenTap;
+/**
+ Alpha of the background view.
+ */
+@property (nonatomic, assign) CGFloat backgroundAlpha;
 
 @end

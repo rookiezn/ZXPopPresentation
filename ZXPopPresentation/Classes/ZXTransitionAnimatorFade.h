@@ -6,11 +6,10 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "ZXTransitionAnimator.h"
 
-@interface ZXTransitionAnimatorFade : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZXTransitionAnimatorFade : ZXTransitionAnimator
 
-@property (nonatomic, assign) CGFloat duration;
 @property (nonatomic, assign) CGFloat offsetX;
 @property (nonatomic, assign) CGFloat offsetY;
 
