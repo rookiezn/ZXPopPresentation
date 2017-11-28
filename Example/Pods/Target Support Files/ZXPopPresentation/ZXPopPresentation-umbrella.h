@@ -13,9 +13,9 @@
 #import "ZXPopPresentation.h"
 #import "ZXPopPresentationController.h"
 #import "ZXTransitionAnimator.h"
-#import "ZXTransitionAnimatorDefault.h"
+#import "ZXTransitionAnimatorScale.h"
 #import "ZXTransitionAnimatorFade.h"
-#import "ZXTransitionAnimatorFromBottom.h"
+#import "ZXTransitionAnimatorTranslation.h"
 
 FOUNDATION_EXPORT double ZXPopPresentationVersionNumber;
 FOUNDATION_EXPORT const unsigned char ZXPopPresentationVersionString[];

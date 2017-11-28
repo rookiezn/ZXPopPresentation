@@ -21,9 +21,9 @@
     {
         switch (style)
         {
-            case ZXPopPresentationStyleDefault:
+            case ZXPopPresentationStyleScale:
             {
-                self.animator = [ZXTransitionAnimatorDefault new];
+                self.animator = [ZXTransitionAnimatorScale new];
                 break;
             }
             case ZXPopPresentationStyleFade:
@@ -33,7 +33,9 @@
             }
             default:
             {
-                self.animator = [ZXTransitionAnimatorFromBottom new];
+                ZXTransitionAnimatorTranslation *animator = [ZXTransitionAnimatorTranslation new];
+                animator.direction = ZXTransitionDirectionFromTop;
+                self.animator = animator;
                 break;
             }
         }

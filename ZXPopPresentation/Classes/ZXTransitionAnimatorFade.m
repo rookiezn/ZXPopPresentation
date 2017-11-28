@@ -23,19 +23,17 @@
 - (void)configureInitialStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
 {
     UIView *animatedView = isPresentation ? toView : fromView;
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);
     if (isPresentation)
     {
         animatedView.alpha = 0;
-        animatedView.transform = transform;
+        animatedView.transform = CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);
     }
 }
 
 - (void)configureFinalStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
 {
     UIView *animatedView = isPresentation ? toView : fromView;
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);
-    animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
+    animatedView.transform = isPresentation ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(self.offsetX, self.offsetY);;
     animatedView.alpha = isPresentation ? 1 : 0;
 }
 

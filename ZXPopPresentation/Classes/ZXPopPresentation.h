@@ -9,8 +9,8 @@
 #define ZXPopPresentation_h
 
 #import "ZXPopPresentationController.h"
-#import "ZXTransitionAnimatorDefault.h"
+#import "ZXTransitionAnimatorScale.h"
 #import "ZXTransitionAnimatorFade.h"
-#import "ZXTransitionAnimatorFromBottom.h"
+#import "ZXTransitionAnimatorTranslation.h"
 
 #endif /* ZXPopPresentation_h */

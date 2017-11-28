@@ -38,7 +38,7 @@
         make.height.mas_equalTo(300);
     }];
     
-    [self.view addSubview:self.presentBtn1 = [self btnWithTitle:@"default"]];
+    [self.view addSubview:self.presentBtn1 = [self btnWithTitle:@"Scale"]];
     [self.presentBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(imageView.mas_bottom).offset(10);
         make.centerX.mas_equalTo(0);
@@ -50,7 +50,7 @@
         make.centerX.mas_equalTo(0);
     }];
     
-    [self.view addSubview:self.presentBtn3 = [self btnWithTitle:@"from bottom"]];
+    [self.view addSubview:self.presentBtn3 = [self btnWithTitle:@"translation"]];
     [self.presentBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.presentBtn2.mas_bottom).offset(20);
         make.centerX.mas_equalTo(0);
@@ -62,7 +62,7 @@
     ZXPopPresentationStyle style = 0;
     if (sender == self.presentBtn1)
     {
-        style = ZXPopPresentationStyleDefault;
+        style = ZXPopPresentationStyleScale;
     }
     else if (sender == self.presentBtn2)
     {
@@ -70,7 +70,7 @@
     }
     else if (sender == self.presentBtn3)
     {
-        style = ZXPopPresentationStyleFromBottom;
+        style = ZXPopPresentationStyleTranslation;
     }
     ZXPresentedViewController *controller = [[ZXPresentedViewController alloc] init];
     self.popTransitionDelegate = [[ZXPopTransitionDelegate alloc] initWithStyle:style];

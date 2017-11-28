@@ -10,9 +10,9 @@
 
 typedef NS_ENUM(NSInteger, ZXPopPresentationStyle)
 {
-    ZXPopPresentationStyleDefault,
+    ZXPopPresentationStyleScale,
     ZXPopPresentationStyleFade,
-    ZXPopPresentationStyleFromBottom
+    ZXPopPresentationStyleTranslation
 };
 
 @class ZXTransitionAnimator;

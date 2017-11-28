@@ -1,14 +1,14 @@
 //
-//  ZXTransitionAnimatorDefault.m
+//  ZXTransitionAnimatorScale.m
 //  Pods
 //
 //  Created by Zinc on 5/17/16.
 //
 //
 
-#import "ZXTransitionAnimatorDefault.h"
+#import "ZXTransitionAnimatorScale.h"
 
-@implementation ZXTransitionAnimatorDefault
+@implementation ZXTransitionAnimatorScale
 
 - (instancetype)init
 {
@@ -22,19 +22,17 @@
 - (void)configureInitialStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
 {
     UIView *animatedView = isPresentation ? toView : fromView;
-    CGAffineTransform transform = CGAffineTransformMakeScale(self.scale, self.scale);
     if (isPresentation)
     {
         animatedView.alpha = 0;
-        animatedView.transform = transform;
+        animatedView.transform = CGAffineTransformMakeScale(self.scale, self.scale);;
     }
 }
 
 - (void)configureFinalStateWithFromView:(UIView *)fromView toView:(UIView *)toView isPresentation:(BOOL)isPresentation
 {
     UIView *animatedView = isPresentation ? toView : fromView;
-    CGAffineTransform transform = CGAffineTransformMakeScale(self.scale, self.scale);
-    animatedView.transform = isPresentation ? CGAffineTransformIdentity : transform;
+    animatedView.transform = isPresentation ? CGAffineTransformIdentity : CGAffineTransformMakeScale(self.scale, self.scale);;
     animatedView.alpha = isPresentation ? 1 : 0;
 }
 

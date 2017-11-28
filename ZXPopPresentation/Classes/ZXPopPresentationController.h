@@ -43,19 +43,10 @@
 - (void)zx_dismissalTransitionDidEnd:(ZXPopPresentationController *)presentationController;
 
 /**
- Tells the delegate that the presented view has been added to the container view
-
- @param presentationController the presentation controller
- @param containerView the container view during the presentation
- */
-- (void)zx_presentationController:(ZXPopPresentationController *)presentationController presentedViewDidAddToContainerView:(UIView *)containerView;
-
-/**
  Ask the delegate for the frame of the presented view in container view
 
  @param presentationController the presentation controller
  @return frame of the prsented view in container view
- @discussion If you use auto layout for the presented view, do NOT implement this method, but implement `zx_presentationController:(ZXPopPresentationController *)presentationController presentedViewDidAddToContainerView:(UIView *)containerView` and install constraints needed
  */
 - (CGRect)zx_frameOfPresentedViewInContainerView:(ZXPopPresentationController *)presentationController;
 
@@ -64,6 +55,7 @@
 
  @param presentationController the presentation controller
  @param point the touch point in the container view coordinate
+ @discussion If you don't implement this method, the default behaviour is dismissing the presented view controller
  */
 - (void)zx_presentationController:(ZXPopPresentationController *)presentationController didTapOutsideAtPoint:(CGPoint)point;
 

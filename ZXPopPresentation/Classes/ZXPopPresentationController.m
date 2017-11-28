@@ -48,7 +48,8 @@
     }
 }
 
-- (void)presentationTransitionDidEnd:(BOOL)completed {
+- (void)presentationTransitionDidEnd:(BOOL)completed
+{
     if ([self.popPresentationDelegate respondsToSelector:@selector(zx_presentationTransitionDidEnd:)])
     {
         [self.popPresentationDelegate zx_presentationTransitionDidEnd:self];
@@ -59,7 +60,8 @@
     }
 }
 
-- (void)dismissalTransitionWillBegin {
+- (void)dismissalTransitionWillBegin
+{
     if ([self.popPresentationDelegate respondsToSelector:@selector(zx_dismissalTransitionWillBegin:)])
     {
         [self.popPresentationDelegate zx_dismissalTransitionWillBegin:self];
@@ -78,7 +80,8 @@
     }
 }
 
-- (void)dismissalTransitionDidEnd:(BOOL)completed {
+- (void)dismissalTransitionDidEnd:(BOOL)completed
+{
     if ([self.popPresentationDelegate respondsToSelector:@selector(zx_dismissalTransitionDidEnd:)])
     {
         [self.popPresentationDelegate zx_dismissalTransitionDidEnd:self];
