@@ -16,6 +16,15 @@
 
 @implementation ZXPopPresentationController
 
+- (instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController
+{
+    if (self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController])
+    {
+        self.backgroundAlpha = 0.4;
+    }
+    return self;
+}
+
 - (CGRect)frameOfPresentedViewInContainerView
 {
     if ([self.popPresentationDelegate respondsToSelector:@selector(zx_frameOfPresentedViewInContainerView:)])
@@ -95,13 +104,19 @@
 
 #pragma mark - Property
 
+- (void)setBackgroundAlpha:(CGFloat)backgroundAlpha
+{
+    _backgroundAlpha = backgroundAlpha;
+    _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:backgroundAlpha];
+}
+
 - (UIView *)backgroundView
 {
     if (!_backgroundView)
     {
         _backgroundView = [[UIView alloc] initWithFrame:self.containerView.bounds];
         _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+        _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.backgroundAlpha];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBackgroundView:)];
         [_backgroundView addGestureRecognizer:tapGesture];
     }
